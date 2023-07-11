@@ -8,8 +8,8 @@ const myApp = require('./myApp');
 const express = require('express');
 const app = express();
 
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use((req, res, next) => {
@@ -24,21 +24,21 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
-app.use('/public', express.static(process.cwd() + '/public'));
+// app.use('/public', express.static(process.cwd() + '/public'));
 
-app.route('/_api/package.json')
-  .get(function(req, res, next) {
-    console.log('requested');
-    fs.readFile(path.join(__dirname, '/package.json'), function(err, data) {
-      if(err) return next(err);
-      res.type('txt').send(data.toString());
-    });
-  });
+// app.route('/_api/package.json')
+//   .get(function(req, res, next) {
+//     console.log('requested');
+//     fs.readFile(path.join(__dirname, '/package.json'), function(err, data) {
+//       if(err) return next(err);
+//       res.type('txt').send(data.toString());
+//     });
+//   });
 
-app.route('/')
-  .get(function(req, res) {
-    res.sendFile(path.join(__dirname, '/views/index.html'));
-  })
+// app.route('/')
+//   .get(function(req, res) {
+//     res.sendFile(path.join(__dirname, '/views/index.html'));
+//   })
 
 const port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, () => {
