@@ -1,4 +1,5 @@
-require('dotenv').config()
+require('dotenv').config();
+const bodyParser = require('body-parser');
 
 let express = require('express');
 let app = express();
@@ -6,6 +7,8 @@ let app = express();
 console.log('Hello World');
 
 app.use('/public', express.static(__dirname + '/public'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   const output = `${req.method} ${req.path} - ${req.ip}`;
